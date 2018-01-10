@@ -22,5 +22,15 @@ Tested on Laravel 5.2
         sh deploy.sh
 
 ### Important Notes
+
 * All log files related to supervisor will be written in ```/var/www/app/support/logs``` in your EB container.
 * Run ```ps -aux | grep artisan``` to make sure that supervisor is running on your system.
+
+### See Also
+
+* [Supervisor/initscripts](https://github.com/Supervisor/initscripts)
+* [Supervisord](http://supervisord.org/)
+
+### Acknowledgments
+
+Check the [Original Source](https://lifeofguenter.de/2015/04/27/laravel-queues-with-supervisor-on-elasticbeanstalk) for more details about the config
