@@ -9,7 +9,7 @@ Tested on Laravel 5.2
         cp denebsupervisord/supervisor.config {$path_to_source}/source/.ebextension/
         cp denebsupervisord/supervisor.sh {$path_to_source}/source/.ebextension/
 
-2. Add new value to Elastic Beanstalk software configuration
+2. Add new value to Elastic Beanstalk software configuration in your dashboard.
    - All Application > ```${YOUR_ENV}``` > Configuration > Software Configuration.
    - Look at your Environment Properties, add this value:
      ```
@@ -25,7 +25,7 @@ Tested on Laravel 5.2
 
 ### Important Notes
 
-* All log files related to supervisor will be written in ```/var/www/app/support/logs``` in your EB container.
+* All log files related to supervisor will be written in ```/var/www/app/support/logs``` in your EB container. You can also request for log files in log dashboard also, All Application > ```${YOUR_ENV}``` > Logs.
 * Run ```ps -aux | grep artisan``` to make sure that supervisor is running on your system.
 
 ### See Also
