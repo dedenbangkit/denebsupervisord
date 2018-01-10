@@ -10,13 +10,15 @@ Tested on Laravel 5.2
         cp denebsupervisord/supervisor.sh {$path_to_source}/source/.ebextension/
 
 2. Add new value to Elastic Beanstalk software configuration
-   - All Application > ${YOUR_ENV} > Configuration > Software Configuration.
+   - All Application > ```${YOUR_ENV}``` > Configuration > Software Configuration.
    - Look at your Environment Properties, add this value:
+     ```
      Property Name = SUPERVISE
      Property Value = enable
+     ```
    - Apply and wait until the configuring procces done.
 
-3. Deploy your app with the webhook or by executing this command in EB OPS
+3. Deploy your app with the webhook or by executing this command in *EB OPS*
 
         cd {$path_to_source}
         sh deploy.sh
