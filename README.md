@@ -1,6 +1,17 @@
 # Dsupervisord
 Supervisor Configuration for BJM Elastic Beanstalk
 
+## About Supervisor
+Supervisor is a client/server system that allows its users to monitor and control a number of processes on UNIX-like operating systems.
+use supervisord tools to start/stop, conditionally wait for child processes to shutdown, and startup later.
+* processname   : ```supervisord```
+* config        : ```/etc/supervisord.conf```
+* config        : ```/etc/sysconfig/supervisord```
+* pidfile       : ```/var/run/supervisord.pid```
+* chkconfig     : ```345 83 04```
+
+### Installation
+
 Tested on Laravel 5.2
 
 1. Add Elastic Beanstalk Extension to your deploy Source
@@ -27,8 +38,9 @@ Tested on Laravel 5.2
 
 * All log files related to supervisor will be written in ```/var/www/app/support/logs``` in your EB container. You can also request for log files in log dashboard also, All Application > ```${YOUR_ENV}``` > Logs.
 * Run ```ps -aux | grep artisan``` to make sure that supervisor is running on your system.
+* The demo
 
-### See Also
+### More Details
 
 * [Supervisor/initscripts](https://github.com/Supervisor/initscripts)
 * [Supervisord](http://supervisord.org/)
