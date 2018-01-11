@@ -19,18 +19,32 @@ if [ "${SUPERVISE}" == "enable" ]; then
   cat <<'EOB' > /etc/init.d/supervisord
 #!/bin/bash
 #
-# Supervisord   Startup script for the Supervisor process control system
+# supervisord   Startup script for the Supervisor process control system
+#
 # Author:       Mike McGrath <mmcgrath@redhat.com> (based off yumupdatesd)
 #               Jason Koppe <jkoppe@indeed.com> adjusted to read sysconfig,
+#                   use supervisord tools to start/stop, conditionally wait
+#                   for child processes to shutdown, and startup later
 #               Erwan Queffelec <erwan.queffelec@gmail.com>
+#                   make script LSB-compliant
 #
-
-
+# chkconfig:    345 83 04
+# description: Supervisor is a client/server system that allows \
+#   its users to monitor and control a number of processes on \
+#   UNIX-like operating systems.
+# processname: supervisord
+# config: /etc/supervisord.conf
+# config: /etc/sysconfig/supervisord
+# pidfile: /var/run/supervisord.pid
+#
 ### BEGIN INIT INFO
 # Provides: supervisord
 # Required-Start: $all
 # Required-Stop: $all
 # Short-Description: start and stop Supervisor process control system
+# Description: Supervisor is a client/server system that allows
+#   its users to monitor and control a number of processes on
+#   UNIX-like operating systems.
 ### END INIT INFO
 
 # Source function library
@@ -124,20 +138,21 @@ EOB
   chmod +x /etc/init.d/supervisord
 
   cat <<'EOB' > /etc/sysconfig/supervisord
-  
 # Configuration file for the supervisord service
+#
 # Author: Jason Koppe <jkoppe@indeed.com>
+#             orginal work
 #         Erwan Queffelec <erwan.queffelec@gmail.com>
-# adjusted to new LSB-compliant init script
+#             adjusted to new LSB-compliant init script
 
 # make sure elasticbeanstalk PARAMS are being passed through to supervisord
 . /opt/elasticbeanstalk/support/envvars
 
 # WARNING: change these wisely! for instance, adding -d, --nodaemon
 # here will lead to a very undesirable (blocking) behavior
-# OPTIONS="-c /etc/supervisord.conf"
+#OPTIONS="-c /etc/supervisord.conf"
 PIDFILE=/var/run/supervisord/supervisord.pid
-# LOCKFILE=/var/lock/subsys/supervisord.pid
+#LOCKFILE=/var/lock/subsys/supervisord.pid
 
 # Path to the supervisord binary
 SUPERVISORD=/usr/local/bin/supervisord
